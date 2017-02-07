@@ -13,7 +13,7 @@ cursor.execute(sql)
 sql= 'use '+db
 cursor.execute(sql)
 only_files = [f for f in listdir(mypath) if isfile(join(mypath, f))]
-table_names=[];
+#table_names=[];
 path_of_file=''
 head=''
 s=''
@@ -21,24 +21,24 @@ for i in only_files:
          i=i[:-4]
          path_of_file=mypath+'/'+i+'.csv'
          csv_data = csv.reader(file(path_of_file))
-         table_name = i
+         #table_name = i
          s=''
          for row in csv_data:
-             createsqltable = 'CREATE TABLE IF NOT EXISTS ' + table_name +'('+' VARCHAR(100),'.join(row) + ' VARCHAR(100))'
+             createsqltable = 'CREATE TABLE IF NOT EXISTS ' + i +'('+' VARCHAR(100),'.join(row) + ' VARCHAR(100))'
             # print (createsqltable)
              cursor.execute(createsqltable)
              db1.commit()
              head=row
             # print(head)
              break
-         query ='INSERT INTO '+table_name+' ('
-         for i in range(0, len(head)):
-              query = query + head[i]
+         query ='INSERT INTO '+i+' ('
+         for j in range(0, len(head)):
+              query = query + head[j]
               s=s+"%s"
-              if i < len(head)-1:
+              if j < len(head)-1:
                   s=s+', '
 
-              if i < len(head) - 1:
+              if j < len(head) - 1:
                  query = query + ' ,'
          query=query+' ) VALUES('
          query=query+s+')'
