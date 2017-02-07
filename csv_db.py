@@ -34,7 +34,7 @@ for i in only_files:
          query ='INSERT INTO '+table_name+' ('
          for i in range(0, len(head)):
               query = query + head[i]
-              s=s+'"%s"'
+              s=s+"%s"
               if i < len(head)-1:
                   s=s+', '
 
