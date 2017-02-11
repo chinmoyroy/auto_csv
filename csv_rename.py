@@ -1,10 +1,13 @@
 import os
-from os import listdir
-from os import walk
-from os.path import isfile, join
 
-mypath=raw_input("Enter the path of the folder in which the csv's are located \n (without the traling /) \n")
-only_files = [f for f in listdir(mypath) if isfile(join(mypath, f))]
-for i in only_files:
-    path_of_file=mypath+'/'+i
-    os.rename(path_of_file, path_of_file.replace(' ', '_'))
+#path =  os.getcwd()
+path=raw_input("Enter the path without the trailing / \n")
+#print(path)
+filenames = os.listdir(path)
+
+for filename in filenames:
+	name = filename.replace(" ","_").lower()
+	filename = os.path.join(path,filename)
+	name = os.path.join(path,name)
+	#print filename+"\n", name
+	os.rename(filename, name)
